@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sharptron.Core.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Sharptron
 {
-    static class Program
+    static class SharptronApp
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +17,7 @@ namespace Sharptron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ShUIWindow());
+            Application.Run(new BrowserWindowBase("http://windows93.net"));
         }
     }
 }

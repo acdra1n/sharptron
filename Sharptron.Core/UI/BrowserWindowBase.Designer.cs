@@ -1,6 +1,8 @@
-﻿namespace Sharptron
+﻿using System.Drawing;
+
+namespace Sharptron.Core.UI
 {
-    partial class ShUIWindow
+    partial class BrowserWindowBase
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +30,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserWindowBase));
             this.SuspendLayout();
             // 
-            // Form1
+            // BrowserWindowBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 451);
-            this.Name = "Form1";
-            this.Text = "Sharptron App";
+            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "BrowserWindowBase";
+            this.Text = "Window Title";
+            this.Load += new System.EventHandler(this.BrowserWindowBase_Load);
             this.ResumeLayout(false);
 
         }
@@ -44,4 +49,3 @@
         #endregion
     }
 }
-
