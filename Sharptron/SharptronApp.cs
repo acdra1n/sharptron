@@ -36,11 +36,11 @@ namespace Sharptron
 
             // Find main entry point in "bins" folder
 
-            //for debug
-            BrowserWindow bw = new BrowserWindow("http://canary.discordapp.com/app", new Size(800, 600), new Point(100, 100));
-            bw.SyncTitle = false;
-            bw.SetTitle("Sharptron");
-            Application.Run(bw.BaseWindow);
+            // Run this when no valid binary has been found.
+            BrowserWindow window = new BrowserWindow(Path.Combine(ResourcesDir, "default\\index.html"));
+            window.SyncTitle = false;
+            window.SetTitle("Sharptron");
+            Application.Run(window.BaseWindow);
 
             //Application.Run(new BrowserWindowBase("http://ptb.discordapp.com/app"));
         }

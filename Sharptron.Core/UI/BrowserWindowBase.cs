@@ -22,7 +22,10 @@ namespace Sharptron.Core.UI
 
         public static string InitialUrl { get; protected set; }
         public Queue<Action> QueuedTasks { get; private set; }
-        public bool SyncTitle { get; set; } = true;
+        public bool SyncTitle { get; internal set; } = true;
+        public bool OnlyDisplayWhenFinished { get; internal set; }
+
+        private bool initialFrameLoadingFinished = false;
 
         public BrowserWindowBase()
         {
@@ -39,10 +42,16 @@ namespace Sharptron.Core.UI
         private void BrowserWindowBase_Load(object sender, EventArgs e)
         {
             browser = new ChromiumWebBrowser(InitialUrl);
+            browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
             browser.FrameLoadEnd += Browser_FrameLoadEnd;
             browser.TitleChanged += Browser_TitleChanged;
             browser.Dock = DockStyle.Fill;
             this.Controls.Add(browser);
+        }
+
+        private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
+        {
+            // TODO do window show hide
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)

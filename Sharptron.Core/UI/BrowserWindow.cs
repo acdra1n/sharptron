@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,15 +38,20 @@ namespace Sharptron.Core.UI
         public BrowserWindow()
         {
             BaseWindow = new BrowserWindowBase();
+            BaseWindow.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>
-        /// Sets the title of this window.
+        /// Creates a new browser window size 640x480.
         /// </summary>
-        /// <param name="text">The new title to use.</param>
-        public void SetTitle(string text)
+        /// <param name="url">The URL the browser view should display. Leave as null to create an empty window.</param>
+        public BrowserWindow(string url)
         {
-            BaseWindow.Text = text;
+            if (url == null)
+                url = "about:blank";
+
+            BaseWindow = new BrowserWindowBase(url);
+            BaseWindow.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>
@@ -63,6 +69,34 @@ namespace Sharptron.Core.UI
             BaseWindow.StartPosition = FormStartPosition.Manual;
             BaseWindow.Size = new System.Drawing.Size(size.Width, size.Height);
             BaseWindow.Location = new System.Drawing.Point(location.X, location.Y);
+        }
+
+        /// <summary>
+        /// Sets the title of this window.
+        /// </summary>
+        /// <param name="text">The new title to use.</param>
+        public void SetTitle(string text)
+        {
+            BaseWindow.Text = text;
+        }
+
+        /// <summary>
+        /// Sets the icon of this window.
+        /// </summary>
+        /// <param name="iconPath">The path of the icon to use.</param>
+        public void SetIcon(string iconPath)
+        {
+            if (!File.Exists(iconPath))
+                throw new FileNotFoundException("File does not exist", iconPath);
+            BaseWindow.Icon = new System.Drawing.Icon(iconPath);
+        }
+
+        /// <summary>
+        /// Shows the browser window.
+        /// </summary>
+        public void Show()
+        {
+            BaseWindow.Show();
         }
     }
 }
