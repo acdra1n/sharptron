@@ -12,6 +12,57 @@ namespace Sharptron.Core.UI
     /// </summary>
     public class BrowserWindow
     {
-        
+        public BrowserWindowBase BaseWindow { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the Chromium browser can change the window title.
+        /// This property will have no effect once the browser window is shown.
+        /// </summary>
+        public bool SyncTitle
+        {
+            get
+            {
+                return BaseWindow.SyncTitle;
+            }
+
+            set
+            {
+                BaseWindow.SyncTitle = value;
+            }
+        }
+
+        /// <summary>
+        /// Creates a new browser window with size 640x480 and no URL target.
+        /// </summary>
+        public BrowserWindow()
+        {
+            BaseWindow = new BrowserWindowBase();
+        }
+
+        /// <summary>
+        /// Sets the title of this window.
+        /// </summary>
+        /// <param name="text">The new title to use.</param>
+        public void SetTitle(string text)
+        {
+            BaseWindow.Text = text;
+        }
+
+        /// <summary>
+        /// Creates a new browser window.
+        /// </summary>
+        /// <param name="url">The URL the browser view should display. Leave as null to create an empty window.</param>
+        /// <param name="size">The size to use when creating the window.</param>
+        /// <param name="location">The initial location of the window.</param>
+        public BrowserWindow(string url, Size size, Point location)
+        {
+            if (url == null)
+                url = "about:blank";
+
+            BaseWindow = new BrowserWindowBase(url);
+            BaseWindow.StartPosition = FormStartPosition.Manual;
+            BaseWindow.Size = new System.Drawing.Size(size.Width, size.Height);
+            BaseWindow.Location = new System.Drawing.Point(location.X, location.Y);
+        }
     }
 }

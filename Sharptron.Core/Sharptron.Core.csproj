@@ -60,6 +60,9 @@
     <Compile Include="UI\BrowserWindowBase.Designer.cs">
       <DependentUpon>BrowserWindowBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Point.cs" />
+    <Compile Include="UI\Size.cs" />
+    <Compile Include="Util\SyncExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
