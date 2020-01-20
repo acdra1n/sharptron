@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\BrowserWindow.cs" />
     <Compile Include="UI\BrowserWindowBase.cs">
       <SubType>Form</SubType>
     </Compile>
