@@ -34,7 +34,6 @@ namespace Shpak.CLI.Commands
             Console.WriteLine("Saving archive...");
             archive.Save(args[1]);
             Console.WriteLine("Done.");
-
             return 0;
         }
     }
