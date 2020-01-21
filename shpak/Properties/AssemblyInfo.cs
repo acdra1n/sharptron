@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("shpak")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Sharptron Packer")]
+[assembly: AssemblyDescription("Sharptron Archiver")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("shpak")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("vreman.me")]
+[assembly: AssemblyProduct("Sharptron")]
+[assembly: AssemblyCopyright("Copyright © vreman.me 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

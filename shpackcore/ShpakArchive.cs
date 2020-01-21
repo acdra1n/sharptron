@@ -81,6 +81,15 @@ namespace shpakcore
         /// <param name="data">The binary data of the file to add.</param>
         public void AddFile(string pathInArchive, byte[] data)
         {
+            bool exists = false;
+            Entries.ForEach((e) =>
+            {
+                exists = (e.Path == pathInArchive);
+            });
+
+            if (exists)
+                throw new ShpakException("Entry exists.");
+
             Entries.Add(new ShpakEntry()
             {
                 BinData = data,

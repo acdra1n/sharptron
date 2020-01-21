@@ -1,0 +1,20 @@
+Usage: shpak [options] [command]
+
+Commands:
+
+	add|a <archive> <file> <pathInArchive>
+		add existing file to archive
+
+	info|i <archive>
+		displays archive info
+
+	list|l <archive>
+		lists contents of archive
+
+	extract|e <archive> <dest>
+		extract archive to specified destination
+
+Options:
+
+	-h, --help        this document
+	-V, --version     display version

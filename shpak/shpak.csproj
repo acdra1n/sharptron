@@ -42,6 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLI\CliArgumentProcessor.cs" />
+    <Compile Include="CLI\CliOption.cs" />
+    <Compile Include="CLI\CliOptionNotFoundException.cs" />
+    <Compile Include="CLI\CliOptionNullValue.cs" />
+    <Compile Include="CLI\CliOptionValueMismatchException.cs" />
+    <Compile Include="CLI\CliOptionValueType.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ShpakCLI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +64,15 @@
       <Project>{651d7f44-1ea6-466f-b420-60beb8db2ed1}</Project>
       <Name>shpakcore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CommandHelp.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
