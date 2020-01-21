@@ -43,15 +43,33 @@ namespace Sharptron.Core.UI
         {
             browser = new ChromiumWebBrowser(InitialUrl);
             browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
+            browser.FrameLoadStart += Browser_FrameLoadStart;
             browser.FrameLoadEnd += Browser_FrameLoadEnd;
             browser.TitleChanged += Browser_TitleChanged;
+            browser.JavascriptObjectRepository.ResolveObject += JavascriptObjectRepository_ResolveObject;
             browser.Dock = DockStyle.Fill;
             this.Controls.Add(browser);
+        }
+
+        private void JavascriptObjectRepository_ResolveObject(object sender, CefSharp.Event.JavascriptBindingEventArgs e)
+        {
+            var repo = e.ObjectRepository;
+            if(e.ObjectName == "sharptron")
+            {
+                repo.Register("sharptron", new JSBindings.SharptronJSObject(), isAsync: true);
+            }
+        }
+
+        private void Browser_FrameLoadStart(object sender, FrameLoadStartEventArgs e)
+        {
+            // TODO to remove CefSharp exposure ==> 
+            e.Frame.ExecuteJavaScriptAsync(@"CefSharp.BindObjectAsync('sharptron');delete CefSharp; delete cefSharp; var XYZ = 3;");
         }
 
         private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             // TODO do window show hide
+            // browser.ShowDevTools();
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)

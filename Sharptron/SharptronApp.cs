@@ -17,12 +17,14 @@ namespace Sharptron
         public static string ResourcesDir { get; set; }
 
         /// <summary>
-        /// The main entry point for the application.
+        /// The main entry point for Sharptron.
         /// </summary>
         [STAThread]
         static void Main()
         {
             CefSettings settings = new CefSettings();
+            CefSharpSettings.WcfEnabled = true;
+            Cef.EnableHighDPISupport();
             settings.CefCommandLineArgs.Add("enable-media-stream", "1");
             Cef.Initialize(settings);
             Application.EnableVisualStyles();
@@ -37,6 +39,9 @@ namespace Sharptron
             // Find main entry point in "bins" folder
 
             // Run this when no valid binary has been found.
+            // If the default resources do not exist, show an error stating no main binary could be found.
+            // During the app process, show exception dialogs whenever they occur.
+            
             BrowserWindow window = new BrowserWindow(Path.Combine(ResourcesDir, "default\\index.html"));
             window.SyncTitle = false;
             window.SetTitle("Sharptron");
