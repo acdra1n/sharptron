@@ -50,6 +50,43 @@ namespace shpakcore
         }
 
         /// <summary>
+        /// Saves the archive to disk.
+        /// </summary>
+        /// <param name="path">The path to save the archive.</param>
+        public void Save(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            using (BinaryWriter bw = new BinaryWriter(fs))
+            {
+                // Write magic and header
+
+                bw.Write(0xEA00FC01);
+                bw.Write(0xEA001000);
+                bw.Write(ARCHIVE_VERSION);
+                bw.Write((byte)DataStorageMethod);
+
+                foreach(var e in Entries)
+                {
+                    bw.Write(e.Path);
+                    bw.Write(e.IsDirectory);
+                    
+                    switch(DataStorageMethod)
+                    {
+                        case ShpakStorageMethod.COMPRESS_DEFLATE:
+                            byte[] compressedBytes = Util.Compress(e.BinData);
+                            bw.Write(compressedBytes.Length);
+                            bw.Write(compressedBytes);
+                            break;
+                        case ShpakStorageMethod.STORE:
+                            bw.Write(e.BinLength);
+                            bw.Write(e.BinData);
+                            break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Loads a Shpak archive from file.
         /// </summary>
         /// <param name="path">The path of the archive to load.</param>
