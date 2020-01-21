@@ -24,6 +24,7 @@ namespace Sharptron.Core.UI
         public Queue<Action> QueuedTasks { get; private set; }
         public bool SyncTitle { get; internal set; } = true;
         public bool OnlyDisplayWhenFinished { get; internal set; }
+        public bool IsAppWindow { get; internal set; }
 
         private bool initialFrameLoadingFinished = false;
 
@@ -69,7 +70,7 @@ namespace Sharptron.Core.UI
         private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             // TODO do window show hide
-            // browser.ShowDevTools();
+            browser.ShowDevTools();
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)

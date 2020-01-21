@@ -33,6 +33,23 @@ namespace Sharptron.Core.UI
         }
 
         /// <summary>
+        /// Specifies whether this is an application window.
+        /// This property will have no effect once the browser window is shown.
+        /// </summary>
+        public bool IsAppWindow
+        {
+            get
+            {
+                return BaseWindow.IsAppWindow;
+            }
+
+            set
+            {
+                BaseWindow.IsAppWindow = value;
+            }
+        }
+
+        /// <summary>
         /// Creates a new browser window with size 640x480 and no URL target.
         /// </summary>
         public BrowserWindow()
