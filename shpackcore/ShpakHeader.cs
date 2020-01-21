@@ -9,5 +9,6 @@ namespace shpakcore
     public struct ShpakHeader
     {
         public float Version;
+        public ShpakStorageMethod StorageMethod;
     }
 }

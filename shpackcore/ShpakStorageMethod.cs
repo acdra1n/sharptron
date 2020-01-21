@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace shpakcore
 {
-    public struct ShpakEntry
+    public enum ShpakStorageMethod : byte
     {
-        public string Path;
-        public bool IsDirectory;
-        public int BinLength;
-        public byte[] BinData;
+        STORE = 0,
+        COMPRESS_DEFLATE = 1
     }
 }
