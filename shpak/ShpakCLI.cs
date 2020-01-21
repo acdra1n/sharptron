@@ -13,7 +13,9 @@ namespace shpak
         static void Main(string[] args)
         {
             ShpakArchive sa = new ShpakArchive(args[0]);
-               
+            sa.ClearEntries();
+            sa.DataStorageMethod = ShpakStorageMethod.COMPRESS_DEFLATE;
+            
         }
     }
 }

@@ -50,6 +50,47 @@ namespace shpakcore
         }
 
         /// <summary>
+        /// Creates a directory at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the directory to create.</param>
+        public void MkDir(string path)
+        {
+            Entries.Add(new ShpakEntry()
+            {
+                BinData = new byte[] { 0xFF },
+                BinLength = 1,
+                IsDirectory = true,
+                Path = path
+            });
+        }
+
+        /// <summary>
+        /// Adds a text file to the archive.
+        /// </summary>
+        /// <param name="pathInArchive">The path in archive to place the newly created text file.</param>
+        /// <param name="text">The contents of the text file to add.</param>
+        public void AddTextFile(string pathInArchive, string text)
+        {
+            AddFile(pathInArchive, Encoding.UTF8.GetBytes(text));
+        }
+
+        /// <summary>
+        /// Adds a file to the archive.
+        /// </summary>
+        /// <param name="pathInArchive">The path in archive to place the file.</param>
+        /// <param name="data">The binary data of the file to add.</param>
+        public void AddFile(string pathInArchive, byte[] data)
+        {
+            Entries.Add(new ShpakEntry()
+            {
+                BinData = data,
+                BinLength = data.Length,
+                IsDirectory = false,
+                Path = pathInArchive
+            });
+        }
+
+        /// <summary>
         /// Saves the archive to disk.
         /// </summary>
         /// <param name="path">The path to save the archive.</param>
@@ -111,8 +152,6 @@ namespace shpakcore
                     Version = br.ReadSingle(),
                     StorageMethod = (ShpakStorageMethod)br.ReadByte()
                 };
-
-                Console.WriteLine(hdr.StorageMethod);
 
                 // Retrieve entries
                 while(br.PeekChar() != -1)
