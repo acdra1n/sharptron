@@ -13,14 +13,22 @@ namespace Shpak
 {
     class ShpakCLI
     {
-        static void Error(string msg, params object[] o)
+        public static void Error(string msg, params object[] o)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(msg, o);
             Console.ResetColor();
         }
 
-        static void Main(string[] args)
+        static void RegisterStandardCommands()
+        {
+            CommandRegistry.RegisterCommand("info", new CommandInfo());
+            CommandRegistry.CommandAliases["i"] = "info";
+            CommandRegistry.RegisterCommand("add", new CommandAdd());
+            CommandRegistry.CommandAliases["a"] = "add";
+        }
+
+        static int Main(string[] args)
         {
             /*
              * SHPAK syntax
@@ -38,34 +46,54 @@ namespace Shpak
                 if(proc.HasOption("version"))
                 {
                     Console.WriteLine("Shpak v1.0");
-                    return;
+                    return 0;
                 }
                 else if(proc.HasOption("help"))
                 {
                     Console.WriteLine(Resources.CommandHelp);
-                    return;
+                    return 0;
                 }
                 
                 if(proc.UsefulArguments.Length < 1) // We do not have a command
                 {
                     Console.WriteLine(Resources.CommandHelp);
-                    return;
+                    return 0;
                 }
+
+                RegisterStandardCommands();
 
                 if(!CommandRegistry.Exists(proc.UsefulArguments[0]))
                 {
                     Error("error: command `{0}` is not valid.", proc.UsefulArguments[0]);
-                    return;
+                    return 127;
                 }
 
+                return CommandRegistry.Execute(proc.UsefulArguments[0], proc.UsefulArguments);
             }
             catch (ShpakException ex)
             {
-                   
+                Error("shpak error: " + ex.Message.ToLower());
+                return 1;
+            }
+            catch (FileNotFoundException ex)
+            {
+                Error("error: " + ex.Message.ToLower());
+                return 1;
             }
             catch (CliOptionNotFoundException ex)
             {
                 Error("error: invalid option `{0}`", ex.optionName);
+                return 1;
+            }
+            catch (CliException ex)
+            {
+                Error("error: {0}", ex.Message);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                Error("An unidentifable error has occured. We urge you to contact a developer to resolve this issue as soon as possible.\n\nError Details:\n Message: {0}\n Stack Trace: {1}", ex.Message, ex.StackTrace);
+                return 1;
             }
         }
     }

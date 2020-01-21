@@ -18,6 +18,8 @@ namespace Shpak.CLI.Commands
         /// <returns></returns>
         public static bool Exists(string name)
         {
+            if (CommandAliases.ContainsKey(name))
+                name = CommandAliases[name];
             return RegisteredCommands.ContainsKey(name);
         }
 
@@ -52,11 +54,12 @@ namespace Shpak.CLI.Commands
         public static int Execute(string name, string[] args)
         {
             // Check if this is an alias
-            if (CommandAliases.ContainsKey(name))
-                name = CommandAliases[name];
-            if (!RegisteredCommands.ContainsKey(name))
+            string cmdName = name;
+            if (CommandAliases.ContainsKey(cmdName))
+                cmdName = CommandAliases[cmdName];
+            if (!RegisteredCommands.ContainsKey(cmdName))
                 throw new CliException("Command does not exist.");
-            return RegisteredCommands[name].Execute(args);
+            return RegisteredCommands[cmdName].Execute(args);
         }
     }
 }

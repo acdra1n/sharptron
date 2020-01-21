@@ -55,6 +55,15 @@ namespace Shpak.Core
         /// <param name="path">The path of the directory to create.</param>
         public void MkDir(string path)
         {
+            bool exists = false;
+            Entries.ForEach((e) =>
+            {
+                exists = (e.Path == path);
+            });
+
+            if (exists)
+                throw new ShpakException("Entry exists.");
+
             Entries.Add(new ShpakEntry()
             {
                 BinData = new byte[] { 0xFF },

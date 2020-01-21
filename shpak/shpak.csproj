@@ -52,6 +52,7 @@
     <Compile Include="CLI\CliOptionValueMismatchException.cs" />
     <Compile Include="CLI\CliOptionValueType.cs" />
     <Compile Include="CLI\CliException.cs" />
+    <Compile Include="CLI\Commands\CommandAdd.cs" />
     <Compile Include="CLI\Commands\CommandInfo.cs" />
     <Compile Include="CLI\Commands\CommandRegistry.cs" />
     <Compile Include="CLI\Commands\ICLICommand.cs" />
