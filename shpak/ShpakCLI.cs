@@ -1,6 +1,7 @@
-﻿using shpak.CLI;
-using shpak.Properties;
-using shpakcore;
+﻿using Shpak.CLI;
+using Shpak.CLI.Commands;
+using Shpak.Core;
+using Shpak.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace shpak
+namespace Shpak
 {
     class ShpakCLI
     {
@@ -44,6 +45,23 @@ namespace shpak
                     Console.WriteLine(Resources.CommandHelp);
                     return;
                 }
+                
+                if(proc.UsefulArguments.Length < 1) // We do not have a command
+                {
+                    Console.WriteLine(Resources.CommandHelp);
+                    return;
+                }
+
+                if(!CommandRegistry.Exists(proc.UsefulArguments[0]))
+                {
+                    Error("error: command `{0}` is not valid.", proc.UsefulArguments[0]);
+                    return;
+                }
+
+            }
+            catch (ShpakException ex)
+            {
+                   
             }
             catch (CliOptionNotFoundException ex)
             {

@@ -1,4 +1,4 @@
-﻿namespace shpak.CLI
+﻿namespace Shpak.CLI
 {
     public enum CliOptionValueType
     {

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.CLI
+namespace Shpak.CLI.Commands
 {
-    public class CliOptionNullValue
+    class CommandInfo
     {
-        // Dummy class
     }
 }

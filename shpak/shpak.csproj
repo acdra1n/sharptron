@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5EE0B574-9519-4063-B1F3-443A9B3AB477}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>shpak</RootNamespace>
+    <RootNamespace>Shpak</RootNamespace>
     <AssemblyName>shpak</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>spkicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +51,10 @@
     <Compile Include="CLI\CliOptionNullValue.cs" />
     <Compile Include="CLI\CliOptionValueMismatchException.cs" />
     <Compile Include="CLI\CliOptionValueType.cs" />
+    <Compile Include="CLI\CliException.cs" />
+    <Compile Include="CLI\Commands\CommandInfo.cs" />
+    <Compile Include="CLI\Commands\CommandRegistry.cs" />
+    <Compile Include="CLI\Commands\ICLICommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CommandHelp.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="spkicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

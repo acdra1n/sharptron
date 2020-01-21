@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace shpakcore
+namespace Shpak.Core
 {
     /// <summary>
     /// Represents a Shpak archive.

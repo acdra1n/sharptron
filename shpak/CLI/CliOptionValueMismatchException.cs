@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace shpak.CLI
+namespace Shpak.CLI
 {
     [Serializable]
     internal class CliOptionValueMismatchException : Exception

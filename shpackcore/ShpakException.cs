@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace shpakcore
+namespace Shpak.Core
 {
     [Serializable]
-    internal class ShpakException : Exception
+    public class ShpakException : Exception
     {
         public ShpakException()
         {

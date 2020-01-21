@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.CLI
+namespace Shpak.CLI.Commands
 {
-    public class CliOptionNullValue
+    public interface ICLICommand
     {
-        // Dummy class
+        int Execute(string[] args);
     }
 }
