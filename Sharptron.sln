@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shpak", "shpak\shpak.csproj", "{5EE0B574-9519-4063-B1F3-443A9B3AB477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shpackcore", "shpackcore\shpackcore.csproj", "{651D7F44-1EA6-466F-B420-60BEB8DB2ED1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shpakcore", "shpackcore\shpakcore.csproj", "{651D7F44-1EA6-466F-B420-60BEB8DB2ED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

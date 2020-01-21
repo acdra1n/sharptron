@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace shpackcore
+namespace shpakcore
 {
-    public class Class1
+    public struct ShpakHeader
     {
+        public float Version;
     }
 }
