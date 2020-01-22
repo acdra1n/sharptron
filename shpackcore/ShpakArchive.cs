@@ -88,7 +88,7 @@ namespace Shpak.Core
         /// </summary>
         /// <param name="pathInArchive">The path in archive to place the file.</param>
         /// <param name="data">The binary data of the file to add.</param>
-        public void AddFile(string pathInArchive, byte[] data)
+        public void AddFile(string pathInArchive, byte[] data, bool replace = false)
         {
             bool exists = false;
             Entries.ForEach((e) =>
@@ -97,7 +97,9 @@ namespace Shpak.Core
             });
 
             if (exists)
-                throw new ShpakException("Entry exists.");
+                if (!replace)
+                    throw new ShpakException("Entry exists.");
+                else Entries.Remove(Entries.Find(e => e.Path == pathInArchive));
 
             Entries.Add(new ShpakEntry()
             {
