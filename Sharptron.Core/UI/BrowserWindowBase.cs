@@ -64,7 +64,7 @@ namespace Sharptron.Core.UI
         private void Browser_FrameLoadStart(object sender, FrameLoadStartEventArgs e)
         {
             // TODO to remove CefSharp exposure ==> 
-            e.Frame.ExecuteJavaScriptAsync(@"CefSharp.BindObjectAsync('sharptron');delete CefSharp; delete cefSharp; var XYZ = 3;");
+            e.Frame.ExecuteJavaScriptAsync($"var sharptronVer = {{ chromiumVer: \"{Cef.ChromiumVersion}\", sharptronVer: {1.0f} }};CefSharp.BindObjectAsync('sharptron');delete CefSharp; delete cefSharp; var XYZ = 3;");
         }
 
         private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
