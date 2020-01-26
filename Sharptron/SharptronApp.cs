@@ -17,6 +17,11 @@ namespace Sharptron
         public static string AppDir { get; set; } = Application.StartupPath;
         public static string BinsDir { get; set; }
         public static string ResourcesDir { get; set; }
+#if DEBUG
+        public static bool DebugMode { get; set; } = true;
+#else
+        public static bool DebugMode { get; set; } = false;
+#endif
 
         /// <summary>
         /// The main entry point for Sharptron.
@@ -45,15 +50,22 @@ namespace Sharptron
             // Also add a logger
             foreach(var bin in Directory.GetFiles(BinsDir, "*.sdll", SearchOption.AllDirectories))
             {
-                foreach(var type in Assembly.LoadFile(bin).GetTypes())
+                try
                 {
-                    if ((!type.IsClass) || type.IsNotPublic)
-                        continue;
-                    if(typeof(SharptronApplication).IsAssignableFrom(type))
+                    foreach (var type in Assembly.LoadFile(bin).GetTypes())
                     {
-                        // Found app
-                        app = Activator.CreateInstance(type) as SharptronApplication;
+                        if ((!type.IsClass) || type.IsNotPublic)
+                            continue;
+                        if (typeof(SharptronApplication).IsAssignableFrom(type))
+                        {
+                            // Found app
+                            app = Activator.CreateInstance(type) as SharptronApplication;
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    // TODO: implement logger
                 }
             }
 
