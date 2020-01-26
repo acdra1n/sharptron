@@ -19,5 +19,10 @@ namespace TestApp1
             bw.SetIcon("app.ico");
             StartAsMainWindow(bw);
         }
+
+        public override void OnTerminate()
+        {
+
+        }
     }
 }

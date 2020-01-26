@@ -1,7 +1,7 @@
-﻿using Shpak.CLI;
-using Shpak.CLI.Commands;
-using Shpak.Core;
-using Shpak.Properties;
+﻿using Shar.CLI;
+using Shar.CLI.Commands;
+using Shar.Core;
+using Shar.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak
+namespace Shar
 {
-    class ShpakCLI
+    class SharCLI
     {
         public static void Error(string msg, params object[] o)
         {
@@ -45,7 +45,7 @@ namespace Shpak
                 proc.Process();
                 if(proc.HasOption("version"))
                 {
-                    Console.WriteLine("Shpak v1.0");
+                    Console.WriteLine("Sharptron Archiver (SHAR) v1.0");
                     return 0;
                 }
                 else if(proc.HasOption("help"))
@@ -70,7 +70,7 @@ namespace Shpak
 
                 return CommandRegistry.Execute(proc.UsefulArguments[0], proc.UsefulArguments);
             }
-            catch (ShpakException ex)
+            catch (SharException ex)
             {
                 Error("shpak error: " + ex.Message.ToLower());
                 return 1;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Shpak.CLI
+namespace Shar.CLI
 {
     [Serializable]
     internal class CliException : Exception

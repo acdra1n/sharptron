@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.CLI.Commands
+namespace Shar.CLI.Commands
 {
     public interface ICLICommand
     {

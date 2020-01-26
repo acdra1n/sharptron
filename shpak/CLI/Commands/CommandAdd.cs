@@ -1,4 +1,4 @@
-﻿using Shpak.Core;
+﻿using Shar.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.CLI.Commands
+namespace Shar.CLI.Commands
 {
     public class CommandAdd : ICLICommand
     {
@@ -22,12 +22,12 @@ namespace Shpak.CLI.Commands
             if (!File.Exists(args[1]))
                 throw new FileNotFoundException("file `" + args[2] + "` does not exist.");
 
-            ShpakArchive archive;
+            SharArchive archive;
             if(!File.Exists(args[1]))
             {
                 Console.WriteLine("Creating archive at `{0}`...", args[1]);
-                archive = new ShpakArchive();
-            } else archive = new ShpakArchive(args[1]);
+                archive = new SharArchive();
+            } else archive = new SharArchive(args[1]);
 
             Console.WriteLine("Adding file `{0}` at path `{1}`...", args[2], args[3]);
             archive.AddFile(args[3], File.ReadAllBytes(args[2]));

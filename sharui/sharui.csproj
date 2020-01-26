@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5EE0B574-9519-4063-B1F3-443A9B3AB477}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Shpak</RootNamespace>
-    <AssemblyName>shpak</AssemblyName>
+    <ProjectGuid>{389354C2-0021-4A56-BA04-D70CF4085E17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>sharui</RootNamespace>
+    <AssemblyName>sharui</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,9 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>spkicon.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,49 +38,46 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CLI\CliArgumentProcessor.cs" />
-    <Compile Include="CLI\CliOption.cs" />
-    <Compile Include="CLI\CliOptionNotFoundException.cs" />
-    <Compile Include="CLI\CliOptionNullValue.cs" />
-    <Compile Include="CLI\CliOptionValueMismatchException.cs" />
-    <Compile Include="CLI\CliOptionValueType.cs" />
-    <Compile Include="CLI\CliException.cs" />
-    <Compile Include="CLI\Commands\CommandAdd.cs" />
-    <Compile Include="CLI\Commands\CommandInfo.cs" />
-    <Compile Include="CLI\Commands\CommandRegistry.cs" />
-    <Compile Include="CLI\Commands\ICLICommand.cs" />
+    <Compile Include="SharMgrUI.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\SharUIMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SharUIMain.Designer.cs">
+      <DependentUpon>SharUIMain.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShpakCLI.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\SharUIMain.resx">
+      <DependentUpon>SharUIMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\shpackcore\shpakcore.csproj">
-      <Project>{651d7f44-1ea6-466f-b420-60beb8db2ed1}</Project>
-      <Name>shpakcore</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CommandHelp.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="spkicon.ico" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

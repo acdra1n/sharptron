@@ -1,4 +1,4 @@
-Usage: shpak [options] [command]
+Usage: shar [options] [command]
 
 Commands:
 

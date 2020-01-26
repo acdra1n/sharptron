@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.CLI
+namespace Shar.CLI
 {
     /// <summary>
     /// A class assisting with processing of CLI arguments.

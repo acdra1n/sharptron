@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.Core
+namespace Shar.Core
 {
-    public struct ShpakHeader
+    public struct SharHeader
     {
         public float Version;
-        public ShpakStorageMethod StorageMethod;
+        public SharStorageMethod StorageMethod;
     }
 }

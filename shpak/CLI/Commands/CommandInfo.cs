@@ -1,4 +1,4 @@
-﻿using Shpak.Core;
+﻿using Shar.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.CLI.Commands
+namespace Shar.CLI.Commands
 {
     public class CommandInfo : ICLICommand
     {
@@ -17,7 +17,7 @@ namespace Shpak.CLI.Commands
             if (!File.Exists(args[1]))
                 throw new FileNotFoundException("file `" + args[1] + "` does not exist.");
 
-            ShpakArchive archive = new ShpakArchive(args[1]);
+            SharArchive archive = new SharArchive(args[1]);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Archive Info for `{0}`\n", args[1]);
             Console.ResetColor();

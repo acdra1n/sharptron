@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.Core
+namespace Shar.Core
 {
     /// <summary>
     /// Represents a Shpak archive.
     /// </summary>
-    public class ShpakArchive
+    public class SharArchive
     {
         /// <summary>
         /// Gets or sets the data storage method of this archive.
         /// </summary>
-        public ShpakStorageMethod DataStorageMethod { get; set; } = ShpakStorageMethod.COMPRESS_DEFLATE;
+        public SharStorageMethod DataStorageMethod { get; set; } = SharStorageMethod.COMPRESS_DEFLATE;
 
         /// <summary>
         /// Returns the current latest archive version.
@@ -25,7 +25,7 @@ namespace Shpak.Core
         /// <summary>
         /// Creates a new Shpak archive.
         /// </summary>
-        public ShpakArchive()
+        public SharArchive()
         {
 
         }
@@ -34,12 +34,12 @@ namespace Shpak.Core
         /// Creates a new archive and loads a Shpak archive from file.
         /// </summary>
         /// <param name="path">The path of the archive to load.</param>
-        public ShpakArchive(string path)
+        public SharArchive(string path)
         {
             LoadFromFile(path);
         }
 
-        public List<ShpakEntry> Entries { get; set; } = new List<ShpakEntry>();
+        public List<SharEntry> Entries { get; set; } = new List<SharEntry>();
 
         /// <summary>
         /// Removes all entries from the archive.
@@ -62,9 +62,9 @@ namespace Shpak.Core
             });
 
             if (exists)
-                throw new ShpakException("Entry exists.");
+                throw new SharException("Entry exists.");
 
-            Entries.Add(new ShpakEntry()
+            Entries.Add(new SharEntry()
             {
                 BinData = new byte[] { 0xFF },
                 BinLength = 1,
@@ -98,10 +98,10 @@ namespace Shpak.Core
 
             if (exists)
                 if (!replace)
-                    throw new ShpakException("Entry exists.");
+                    throw new SharException("Entry exists.");
                 else Entries.Remove(Entries.Find(e => e.Path == pathInArchive));
 
-            Entries.Add(new ShpakEntry()
+            Entries.Add(new SharEntry()
             {
                 BinData = data,
                 BinLength = data.Length,
@@ -133,12 +133,12 @@ namespace Shpak.Core
                     
                     switch(DataStorageMethod)
                     {
-                        case ShpakStorageMethod.COMPRESS_DEFLATE:
+                        case SharStorageMethod.COMPRESS_DEFLATE:
                             byte[] compressedBytes = Util.Compress(e.BinData);
                             bw.Write(compressedBytes.Length);
                             bw.Write(compressedBytes);
                             break;
-                        case ShpakStorageMethod.STORE:
+                        case SharStorageMethod.STORE:
                             bw.Write(e.BinLength);
                             bw.Write(e.BinData);
                             break;
@@ -157,26 +157,26 @@ namespace Shpak.Core
             using (BinaryReader br = new BinaryReader(fs))
             {
                 if (fs.Length < 16)
-                    throw new ShpakException("Invalid archive - refusing to read.");
+                    throw new SharException("Invalid archive - refusing to read.");
 
                 if (br.ReadUInt32() != 0xEA00FC01)
-                    throw new ShpakException("Invalid archive magic.");
+                    throw new SharException("Invalid archive magic.");
 
                 // Read archive header
 
                 if (br.ReadUInt32() != 0xEA001000)
-                    throw new ShpakException("Invalid header.");
+                    throw new SharException("Invalid header.");
 
-                ShpakHeader hdr = new ShpakHeader()
+                SharHeader hdr = new SharHeader()
                 {
                     Version = br.ReadSingle(),
-                    StorageMethod = (ShpakStorageMethod)br.ReadByte()
+                    StorageMethod = (SharStorageMethod)br.ReadByte()
                 };
 
                 // Retrieve entries
                 while(br.PeekChar() != -1)
                 {
-                    ShpakEntry entry = new ShpakEntry()
+                    SharEntry entry = new SharEntry()
                     {
                         Path = br.ReadString(),
                         IsDirectory = br.ReadBoolean(),
@@ -186,10 +186,10 @@ namespace Shpak.Core
 
                     switch(hdr.StorageMethod)
                     {
-                        case ShpakStorageMethod.COMPRESS_DEFLATE:
+                        case SharStorageMethod.COMPRESS_DEFLATE:
                             entry.BinData = Util.Decompress(br.ReadBytes(entry.BinLength));
                             break;
-                        case ShpakStorageMethod.STORE:
+                        case SharStorageMethod.STORE:
                             entry.BinData = br.ReadBytes(entry.BinLength);
                             break;
                     }

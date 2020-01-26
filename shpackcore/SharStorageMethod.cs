@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.Core
+namespace Shar.Core
 {
-    public enum ShpakStorageMethod : byte
+    public enum SharStorageMethod : byte
     {
         STORE = 0,
         COMPRESS_DEFLATE = 1

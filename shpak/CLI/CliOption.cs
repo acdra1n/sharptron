@@ -1,4 +1,4 @@
-﻿namespace Shpak.CLI
+﻿namespace Shar.CLI
 {
     public class CliOption
     {

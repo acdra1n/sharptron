@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shpak.Core
+namespace Shar.Core
 {
-    public struct ShpakEntry
+    public struct SharEntry
     {
         public string Path;
         public bool IsDirectory;

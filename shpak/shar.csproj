@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{651D7F44-1EA6-466F-B420-60BEB8DB2ED1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shpak.Core</RootNamespace>
-    <AssemblyName>shpakcore</AssemblyName>
+    <ProjectGuid>{5EE0B574-9519-4063-B1F3-443A9B3AB477}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Shar</RootNamespace>
+    <AssemblyName>shar</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,12 +23,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>spkicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,13 +45,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShpakException.cs" />
-    <Compile Include="ShpakHeader.cs" />
-    <Compile Include="ShpakArchive.cs" />
+    <Compile Include="CLI\CliArgumentProcessor.cs" />
+    <Compile Include="CLI\CliOption.cs" />
+    <Compile Include="CLI\CliOptionNotFoundException.cs" />
+    <Compile Include="CLI\CliOptionNullValue.cs" />
+    <Compile Include="CLI\CliOptionValueMismatchException.cs" />
+    <Compile Include="CLI\CliOptionValueType.cs" />
+    <Compile Include="CLI\CliException.cs" />
+    <Compile Include="CLI\Commands\CommandAdd.cs" />
+    <Compile Include="CLI\Commands\CommandInfo.cs" />
+    <Compile Include="CLI\Commands\CommandRegistry.cs" />
+    <Compile Include="CLI\Commands\ICLICommand.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SharCLI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShpakEntry.cs" />
-    <Compile Include="ShpakStorageMethod.cs" />
-    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\shpackcore\sharcore.csproj">
+      <Project>{651d7f44-1ea6-466f-b420-60beb8db2ed1}</Project>
+      <Name>sharcore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CommandHelp.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="spkicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
