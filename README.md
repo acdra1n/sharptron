@@ -1,5 +1,7 @@
-# sharptron
-CEF-based framework for developing applications written in C#, HTML, CSS, and JS
+![Sharptron Logo](https://raw.githubusercontent.com/techspider/sharptron/res/logo.png)
+
+# Sharptron
+A CEF-based framework for developing applications written in C#, HTML, CSS, and JS.
 
 ## How to build
 
