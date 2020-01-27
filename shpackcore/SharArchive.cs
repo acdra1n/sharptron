@@ -74,6 +74,28 @@ namespace Shar.Core
         }
 
         /// <summary>
+        /// Reads a directory.
+        /// </summary>
+        /// <param name="path">The path to read.</param>
+        /// <returns></returns>
+        public string[] ReadDir(string path)
+        {
+            List<string> paths = new List<string>();
+
+            bool pCount(char c) { if (c == '/') return true; else return false; }
+
+            int p1sep = path.Count(pCount);
+
+            Entries.ForEach((entry) =>
+            {
+                var psepCount = entry.Path.Count(pCount);
+
+            });
+
+            return paths.ToArray();
+        }
+
+        /// <summary>
         /// Adds a text file to the archive.
         /// </summary>
         /// <param name="pathInArchive">The path in archive to place the newly created text file.</param>

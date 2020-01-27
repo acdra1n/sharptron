@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Archive Root");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SharUIMain));
             this.appMenu = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
@@ -49,8 +50,14 @@
             this.gnome_images_small = new System.Windows.Forms.ImageList(this.components);
             this.explorerIconsView = new System.Windows.Forms.ListView();
             this.navButtons = new System.Windows.Forms.Panel();
+            this.gnome_images_large = new System.Windows.Forms.ImageList(this.components);
+            this.rightArrowPanel = new System.Windows.Forms.Panel();
+            this.pathBar = new System.Windows.Forms.TextBox();
+            this.goBtn = new System.Windows.Forms.Button();
+            this.newDirBtn = new System.Windows.Forms.Button();
+            this.upNavBtn = new System.Windows.Forms.Button();
+            this.fwdNavBtn = new System.Windows.Forms.Button();
             this.backNavBtn = new System.Windows.Forms.Button();
-            this.fwdNavButton = new System.Windows.Forms.Button();
             this.appStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -58,6 +65,7 @@
             this.splitContainer.SuspendLayout();
             this.actionBar.SuspendLayout();
             this.navButtons.SuspendLayout();
+            this.rightArrowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // appMenu
@@ -130,7 +138,7 @@
             // 
             this.appStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemsCounterLabel});
-            this.appStatus.Location = new System.Drawing.Point(0, 428);
+            this.appStatus.Location = new System.Drawing.Point(0, 386);
             this.appStatus.Name = "appStatus";
             this.appStatus.Size = new System.Drawing.Size(800, 22);
             this.appStatus.TabIndex = 0;
@@ -155,25 +163,36 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.explorerIconsView);
-            this.splitContainer.Size = new System.Drawing.Size(800, 406);
+            this.splitContainer.Size = new System.Drawing.Size(800, 364);
             this.splitContainer.SplitterDistance = 206;
             this.splitContainer.TabIndex = 1;
             // 
             // actionBar
             // 
+            this.actionBar.Controls.Add(this.pathBar);
+            this.actionBar.Controls.Add(this.rightArrowPanel);
             this.actionBar.Controls.Add(this.navButtons);
             this.actionBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.actionBar.Location = new System.Drawing.Point(0, 0);
             this.actionBar.Name = "actionBar";
             this.actionBar.Size = new System.Drawing.Size(800, 22);
             this.actionBar.TabIndex = 2;
+            this.actionBar.Paint += new System.Windows.Forms.PaintEventHandler(this.actionBar_Paint);
             // 
             // tview
             // 
             this.tview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tview.ImageIndex = 0;
+            this.tview.ImageList = this.gnome_images_small;
             this.tview.Location = new System.Drawing.Point(0, 0);
             this.tview.Name = "tview";
-            this.tview.Size = new System.Drawing.Size(206, 406);
+            treeNode2.ImageKey = "folder_open";
+            treeNode2.Name = "archiveRootNode";
+            treeNode2.Text = "Archive Root";
+            this.tview.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            this.tview.SelectedImageIndex = 19;
+            this.tview.Size = new System.Drawing.Size(206, 364);
             this.tview.TabIndex = 0;
             // 
             // gnome_images_small
@@ -205,22 +224,101 @@
             // explorerIconsView
             // 
             this.explorerIconsView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.explorerIconsView.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.explorerIconsView.HideSelection = false;
+            this.explorerIconsView.LargeImageList = this.gnome_images_large;
             this.explorerIconsView.Location = new System.Drawing.Point(0, 0);
             this.explorerIconsView.Name = "explorerIconsView";
-            this.explorerIconsView.Size = new System.Drawing.Size(590, 406);
+            this.explorerIconsView.Size = new System.Drawing.Size(590, 364);
             this.explorerIconsView.TabIndex = 0;
             this.explorerIconsView.UseCompatibleStateImageBehavior = false;
             // 
             // navButtons
             // 
-            this.navButtons.Controls.Add(this.fwdNavButton);
+            this.navButtons.Controls.Add(this.newDirBtn);
+            this.navButtons.Controls.Add(this.upNavBtn);
+            this.navButtons.Controls.Add(this.fwdNavBtn);
             this.navButtons.Controls.Add(this.backNavBtn);
             this.navButtons.Dock = System.Windows.Forms.DockStyle.Left;
             this.navButtons.Location = new System.Drawing.Point(0, 0);
             this.navButtons.Name = "navButtons";
-            this.navButtons.Size = new System.Drawing.Size(44, 22);
+            this.navButtons.Size = new System.Drawing.Size(90, 22);
             this.navButtons.TabIndex = 0;
+            // 
+            // gnome_images_large
+            // 
+            this.gnome_images_large.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("gnome_images_large.ImageStream")));
+            this.gnome_images_large.TransparentColor = System.Drawing.Color.Transparent;
+            this.gnome_images_large.Images.SetKeyName(0, "folder");
+            this.gnome_images_large.Images.SetKeyName(1, "exec");
+            this.gnome_images_large.Images.SetKeyName(2, "archive");
+            this.gnome_images_large.Images.SetKeyName(3, "text");
+            this.gnome_images_large.Images.SetKeyName(4, "regular");
+            // 
+            // rightArrowPanel
+            // 
+            this.rightArrowPanel.Controls.Add(this.goBtn);
+            this.rightArrowPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rightArrowPanel.Location = new System.Drawing.Point(762, 0);
+            this.rightArrowPanel.Name = "rightArrowPanel";
+            this.rightArrowPanel.Size = new System.Drawing.Size(38, 22);
+            this.rightArrowPanel.TabIndex = 1;
+            // 
+            // pathBar
+            // 
+            this.pathBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pathBar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pathBar.Location = new System.Drawing.Point(90, 0);
+            this.pathBar.Name = "pathBar";
+            this.pathBar.Size = new System.Drawing.Size(672, 22);
+            this.pathBar.TabIndex = 2;
+            this.pathBar.Text = "/";
+            // 
+            // goBtn
+            // 
+            this.goBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.goBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.goBtn.Image = global::sharui.Properties.Resources.stock_navigator_open_toolbar;
+            this.goBtn.Location = new System.Drawing.Point(0, 0);
+            this.goBtn.Name = "goBtn";
+            this.goBtn.Size = new System.Drawing.Size(38, 22);
+            this.goBtn.TabIndex = 4;
+            this.goBtn.UseVisualStyleBackColor = true;
+            // 
+            // newDirBtn
+            // 
+            this.newDirBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.newDirBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.newDirBtn.Image = global::sharui.Properties.Resources.stock_new_dir;
+            this.newDirBtn.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.newDirBtn.Location = new System.Drawing.Point(66, 0);
+            this.newDirBtn.Name = "newDirBtn";
+            this.newDirBtn.Size = new System.Drawing.Size(22, 22);
+            this.newDirBtn.TabIndex = 3;
+            this.newDirBtn.UseVisualStyleBackColor = true;
+            // 
+            // upNavBtn
+            // 
+            this.upNavBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.upNavBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.upNavBtn.Image = global::sharui.Properties.Resources.stock_up_one_dir;
+            this.upNavBtn.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.upNavBtn.Location = new System.Drawing.Point(44, 0);
+            this.upNavBtn.Name = "upNavBtn";
+            this.upNavBtn.Size = new System.Drawing.Size(22, 22);
+            this.upNavBtn.TabIndex = 2;
+            this.upNavBtn.UseVisualStyleBackColor = true;
+            // 
+            // fwdNavBtn
+            // 
+            this.fwdNavBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.fwdNavBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.fwdNavBtn.Image = global::sharui.Properties.Resources.stock_right;
+            this.fwdNavBtn.Location = new System.Drawing.Point(22, 0);
+            this.fwdNavBtn.Name = "fwdNavBtn";
+            this.fwdNavBtn.Size = new System.Drawing.Size(22, 22);
+            this.fwdNavBtn.TabIndex = 1;
+            this.fwdNavBtn.UseVisualStyleBackColor = true;
             // 
             // backNavBtn
             // 
@@ -233,28 +331,18 @@
             this.backNavBtn.TabIndex = 0;
             this.backNavBtn.UseVisualStyleBackColor = true;
             // 
-            // fwdNavButton
-            // 
-            this.fwdNavButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.fwdNavButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.fwdNavButton.Image = global::sharui.Properties.Resources.stock_right;
-            this.fwdNavButton.Location = new System.Drawing.Point(22, 0);
-            this.fwdNavButton.Name = "fwdNavButton";
-            this.fwdNavButton.Size = new System.Drawing.Size(22, 22);
-            this.fwdNavButton.TabIndex = 1;
-            this.fwdNavButton.UseVisualStyleBackColor = true;
-            // 
             // SharUIMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 408);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.appStatus);
             this.Controls.Add(this.actionBar);
             this.Menu = this.appMenu;
             this.Name = "SharUIMain";
             this.Text = "Untitled - Sharptron Archive (SHAR) Manager";
+            this.Load += new System.EventHandler(this.SharUIMain_Load);
             this.appStatus.ResumeLayout(false);
             this.appStatus.PerformLayout();
             this.splitContainer.Panel1.ResumeLayout(false);
@@ -262,7 +350,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.actionBar.ResumeLayout(false);
+            this.actionBar.PerformLayout();
             this.navButtons.ResumeLayout(false);
+            this.rightArrowPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +380,12 @@
         private System.Windows.Forms.ListView explorerIconsView;
         private System.Windows.Forms.Panel navButtons;
         private System.Windows.Forms.Button backNavBtn;
-        private System.Windows.Forms.Button fwdNavButton;
+        private System.Windows.Forms.Button fwdNavBtn;
+        private System.Windows.Forms.Button upNavBtn;
+        private System.Windows.Forms.ImageList gnome_images_large;
+        private System.Windows.Forms.Panel rightArrowPanel;
+        private System.Windows.Forms.Button newDirBtn;
+        private System.Windows.Forms.TextBox pathBar;
+        private System.Windows.Forms.Button goBtn;
     }
 }

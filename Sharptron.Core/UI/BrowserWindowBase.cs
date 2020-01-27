@@ -70,7 +70,9 @@ namespace Sharptron.Core.UI
         private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             // TODO do window show hide
+#if DEBUG
             browser.ShowDevTools();
+#endif
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)

@@ -73,6 +73,26 @@ namespace sharui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap stock_navigator_open_toolbar {
+            get {
+                object obj = ResourceManager.GetObject("stock_navigator-open-toolbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stock_new_dir {
+            get {
+                object obj = ResourceManager.GetObject("stock_new-dir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stock_right {
             get {
                 object obj = ResourceManager.GetObject("stock_right", resourceCulture);

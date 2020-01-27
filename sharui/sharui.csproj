@@ -88,5 +88,17 @@
   <ItemGroup>
     <None Include="Resources\stock_up-one-dir.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\shpackcore\sharcore.csproj">
+      <Project>{651D7F44-1EA6-466F-B420-60BEB8DB2ED1}</Project>
+      <Name>sharcore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stock_new-dir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stock_navigator-open-toolbar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
