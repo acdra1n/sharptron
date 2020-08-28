@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Sharptron Packer")]
 [assembly: AssemblyDescription("Sharptron Archiver")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("vreman.me")]
+[assembly: AssemblyCompany("acdra1n")]
 [assembly: AssemblyProduct("Sharptron")]
-[assembly: AssemblyCopyright("Copyright © vreman.me 2020")]
+[assembly: AssemblyCopyright("Copyright © acdra1n 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
